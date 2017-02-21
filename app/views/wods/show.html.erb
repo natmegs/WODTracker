@@ -1,0 +1,47 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-sm-2">
+    </div>
+    <div class="col-sm-4">
+      <section class="panel panel-default">
+      <header id="wod-panel-heading" class="panel-heading">
+       <h1><%= @wod.title %></h1>
+      </header>
+      <div class="panel-body">
+       <%= simple_format(@wod.details, {}, wrapper_tag: "h2") %>
+       <%= simple_format(@wod.scaling_options, {}, wrapper_tag: "h3") %>
+      </div>
+      </section>
+    </div>
+
+    <div class="col-sm-6 text-left">
+      <div class="btn-group-vertical" role="group">
+
+        <%= link_to wods_path, class: "btn btn-default" do%>
+          WOD Library <span class="glyphicon glyphicon-book"></span>
+        <% end %>
+
+        <% if user_signed_in? %>
+
+          <%= link_to new_wod_logwod_path(@wod), class: "btn btn-default" do %>
+            Log This Wod <span class="glyphicon glyphicon-list"></span>
+          <% end %>
+
+          <% if @wod.user_id == current_user.id %>
+            <%= link_to edit_wod_path, class: "btn btn-default" do %>
+              Edit WOD <span class="glyphicon glyphicon-pencil"></span>
+            <% end %>
+
+            <%= link_to wod_path, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-default" do %>
+              Delete WOD <span class="glyphicon glyphicon-trash"></span>
+            <% end %>
+
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+
+</div>

@@ -1,0 +1,22 @@
+<div class="container">
+
+  <h1><strong>Your Profile</strong></h1>
+
+  <div class="btn-group-vertical">
+    <%= link_to "View Logged Workouts By Date", users_viewByDate_path, class: "btn btn-default" %>
+    <%= link_to "View Logged Workouts By WOD", users_viewByName_path, class: "btn btn-default" %>
+    <%= link_to "View Your WODs", users_yourWODs_path, class: "btn btn-default" %>
+  </div>
+
+  <h2>Your Logged Workouts</h2>
+  <% @user.logwods.each do |log| %>
+    <% @wod = Wod.find(log.wod_id) %>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <%= @wod.title %>: <%= log.score %>
+      </div>
+      <div class="panel-footer"><%= link_to "View Entry", wod_logwod_path(@wod, log.id) %></div>
+    </div>
+  <% end %>
+
+</div>

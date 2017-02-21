@@ -1,0 +1,107 @@
+<div id="home-jumbo" class="jumbotron text-center">
+  <h1>WOD Library</h1>
+
+  <%= form_tag(wods_path, :method => "get", id: "search-form") do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search WODs", id: "search-text" %>
+  <%= submit_tag "Search", :name => nil, id: "search-submit" %>
+  <% end %>
+
+  <% if user_signed_in? %>
+    <%= link_to "Create new WOD", new_wod_path, class: "btn btn-default" %>
+  <% else %>
+    <h4>Sign up or sign in to create new WODs and track your progress</h4>
+    <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-default" %>
+    <%= link_to "Sign In", new_user_session_path, class: "btn btn-default" %>
+  <% end %>
+</div>
+
+<!-- <div class="container-fluid">
+  <% if user_signed_in? %>
+
+    <div class="col-sm-6">
+      <%= link_to "Create new WOD", new_wod_path, class: "btn btn-default" %>
+    </div>
+    <div class="col-sm-6">
+      <%= link_to "User Profile", users_profile_path, class: "btn btn-default" %>
+    </div>
+
+  <% else %>
+
+    <div class="col-sm-4">
+      <h4>Sign up or sign in to create new WODs and track your progress</h4>
+    </div>
+    <div class="col-sm-4">
+      <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-default" %>
+    </div>
+    <div class="col-sm-4">
+      <%= link_to "Sign In", new_user_session_path, class: "btn btn-default" %>
+    </div>
+
+  <% end %>
+</div> -->
+
+<div class="container">
+
+  <!-- <div class="row">
+
+    <div class="col-sm-3">
+      <h1>WOD Index Page</h1>
+    </div>
+
+    <div class="col-sm-3">
+      <%= form_tag(wods_path, :method => "get", id: "search-form") do %>
+      <%= text_field_tag :search, params[:search], placeholder: "Search WODs" %>
+      <%= submit_tag "Search", :name => nil %>
+      <% end %>
+    </div>
+
+    <% if user_signed_in? %>
+
+      <div class="col-sm-3">
+        <%= link_to "Create new WOD", new_wod_path, class: "btn btn-default" %>
+      </div>
+      <div class="col-sm-3">
+        <%= link_to "User Profile", users_profile_path, class: "btn btn-default" %>
+      </div>
+
+    <% else %>
+
+      <div class="col-sm-3">
+        <h3>Sign up to create new WODs and track your progress</h3>
+      </div>
+      <div class="col-sm-3">
+        <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-default" %>
+      </div>
+
+    <% end %>
+
+  </div> -->
+
+  <div class="row">
+    <% if @wod.blank? %>
+      <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
+    <% else %>
+      <% @wod.each do |wod| %>
+        <div class="col-sm-3">
+          <section class="panel panel-default">
+          <header id="wod-panel-heading" class="panel-heading">
+           <h5 class="panel-title"><%= link_to wod.title, wod_path(wod) %></h5>
+          </header>
+          <div class="panel-body">
+           <!-- <p><%= wod.details %></p> -->
+           <%= simple_format(wod.details, {}, wrapper_tag: "p") %>
+          </div>
+          </section>
+        </div><!--col-->
+        <!-- <h2><%= link_to wod.title, wod_path(wod) %></h2> -->
+      <% end %>
+    <% end %>
+  </div>
+
+  <!-- <% @wod.each do |wod| %>
+    <h2><%= link_to wod.title, wod_path(wod) %></h2>
+  <% end %> -->
+
+</div><!--container-->
+
+<!--<div class="calendar"></div>-->

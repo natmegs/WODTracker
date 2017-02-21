@@ -1,0 +1,9 @@
+<h1>Edit Logged WOD</h1>
+
+<%= simple_form_for ([@wod, @logwod]) do |f| %>
+  <%= f.input :wod_date, label: "Date Completed" %>
+  <%= f.input :score, label: "Your Score" %>
+  <%= f.input :scaling_used, label: "Scaling Used" %>
+  <%= f.input :notes %>
+  <%= f.button :submit %>
+<% end %>

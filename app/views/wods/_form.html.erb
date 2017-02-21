@@ -1,0 +1,6 @@
+<%= simple_form_for @wod do |f| %>
+  <%= f.input :title, label: "WOD Name" %>
+  <%= f.input :details, label: "WOD Details" %>
+  <%= f.input :scaling_options, label: "WOD Scaling Options" %>
+  <%= f.button :submit %>
+<% end %>

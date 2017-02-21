@@ -1,0 +1,8 @@
+<%= simple_form_for ([@wod, @wod.logwods.build]) do |f| %>
+  <!-- <%= f.datetime_field :wod_date, label: "Date Completed" %> -->
+  <%= f.input :wod_date, label: "Date Completed", html5: true %>
+  <%= f.input :score, label: "Your Score" %>
+  <%= f.input :scaling_used, label: "Scaling Used" %>
+  <%= f.input :notes %>
+  <%= f.button :submit %>
+<% end %>

@@ -1,0 +1,50 @@
+
+<div class="container">
+  <h1>Logged WOD Show Page</h1>
+  <div class="row">
+    <div class="col-md-offset-3 col-md-6 panel panel-default panel-body">
+      <h2><%= @wod.title %></h2>
+      <%= simple_format(@wod.details, {}, wrapper_tag: "h4") %>
+      <h5><%= @wod.scaling_options %></h5>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-offset-3 col-md-6 panel panel-default panel-body">
+
+      <dl class="dl-horizontal">
+        <% if @logwod.wod_date? %>
+          <dt>Date Completed:</dt>
+          <dd><%= @logwod.wod_date.strftime("%A %B %d %Y") %></dd>
+          <!-- <h2>Date Completed: <%= @logwod.wod_date.strftime("%A %B %d %Y") %></h2> -->
+        <% end %>
+        <dt>Your Score:</dt>
+        <dd><%= @logwod.score %></dd>
+        <!-- <h2>Your Score: <%= @logwod.score %></h2> -->
+        <% if @logwod.scaling_used? %>
+          <dt>Scaling Used:</dt>
+          <dd><%= @logwod.scaling_used %></dd>
+          <!-- <h3>Scaling Used: <%= @logwod.scaling_used %></h3> -->
+        <% end %>
+        <% if @logwod.notes? %>
+          <dt>Notes:</dt>
+          <dd><%= @logwod.notes %></dd>
+          <!-- <h4>Notes: <%= @logwod.notes %></h4> -->
+        <% end %>
+      </dl>
+
+      <div class="container">
+        <div class="row">
+          <div class="btn-group nats-btn-group">
+            <%= link_to "Edit Entry", edit_wod_logwod_path(@wod, @logwod), class: "btn btn-default" %>
+            <%= link_to "Delete Entry", wod_logwod_path(@wod, @logwod), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-default" %>
+            <%= link_to "Back To Your Profile", users_profile_path, class: "btn btn-default" %>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

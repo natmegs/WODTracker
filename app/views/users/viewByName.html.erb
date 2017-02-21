@@ -1,0 +1,21 @@
+<div class="container">
+  <h1>View Logged Workouts By WOD Name</h1>
+
+  <div class="btn-group nats-btn-group">
+    <%= link_to "Back To Your Profile", users_profile_path, class: "btn btn-default" %>
+  </div>
+
+  <%= form_tag(users_viewByName_path, :method => "get", id: "search-form") do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search WODs" %>
+  <%= submit_tag "Search", :name => nil %>
+  <% end %>
+
+  <% if @wods.blank? %>
+    <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
+  <% else %>
+    <% @wods.each do |wod| %>
+      <h2><%= link_to wod.title, wod_path(wod) %></h2>
+    <% end %>
+  <% end %>
+
+</div>
