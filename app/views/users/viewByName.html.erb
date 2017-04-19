@@ -17,5 +17,15 @@
       <h2><%= link_to wod.title, wod_path(wod) %></h2>
     <% end %>
   <% end %>
+  
+  <% @user.logwods.each do |log| %>
+    <% @wod = Wod.find(log.wod_id) %>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <%= @wod.title %>: <%= log.score %>
+      </div>
+      <div class="panel-footer"><%= link_to "View Entry", wod_logwod_path(@wod, log.id) %></div>
+    </div>
+  <% end %>
 
 </div>

@@ -13,5 +13,5 @@ Rails.application.routes.draw do
   resources :wods do
     resources :logwods
   end
-  root 'wods#index'
+  root 'pages#home'
 end

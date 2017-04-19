@@ -19,7 +19,7 @@ class WodsController < ApplicationController
   def create
     @wod = current_user.wods.build(wod_params)
     if @wod.save
-      redirect_to root_path
+      redirect_to wod_path(@wod)
     else
       render 'new'
     end
@@ -33,7 +33,7 @@ class WodsController < ApplicationController
 
   def update
     if @wod.update(wod_params)
-      redirect_to root_path
+      redirect_to wod_path(@wod)
     else
       render 'edit'
     end
@@ -41,7 +41,7 @@ class WodsController < ApplicationController
 
   def destroy
     @wod.destroy
-    redirect_to root_path
+    redirect_to wods_path
   end
 
   private
